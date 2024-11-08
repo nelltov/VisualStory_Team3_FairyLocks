@@ -9,6 +9,7 @@ public class FilterManager : MonoBehaviour
 {
     public Image panel;
     [SerializeField] public Button publishButton;
+    [SerializeField] public ParticleSystem thumb;
     Boolean publish = false;
     public void Filter1()
     {
@@ -28,6 +29,16 @@ public class FilterManager : MonoBehaviour
         publish = true;
     }
 
+    public void Publish()
+    {
+        thumb.Play();
+    }
+
+
+    void Start()
+    {
+        thumb.Stop();
+    }
     void Update()
     {
         if(publish == true)
