@@ -10,45 +10,34 @@ public class FilterManager : MonoBehaviour
     public Image panel;
     [SerializeField] public Button publishButton;
     [SerializeField] public ParticleSystem thumb;
-    Boolean publish = false;
+
+    void Start()
+    {
+        publishButton.interactable = false;
+        thumb.Stop();
+    }
+
     public void Filter1()
     {
         panel.color = Color.red;
-        publish = true;
+        publishButton.interactable = true;
     }
 
     public void Filter2()
     {
         panel.color = Color.yellow;
-        publish = true;
+        publishButton.interactable = true;
     }
 
     public void Filter3()
     {
         panel.color = Color.green;
-        publish = true;
+        publishButton.interactable = true;
     }
 
     public void Publish()
     {
         thumb.Play();
-    }
-
-
-    void Start()
-    {
-        thumb.Stop();
-    }
-    void Update()
-    {
-        if(publish == true)
-        {
-            publishButton.interactable = true;
-        }
-        else
-        {
-            Debug.Log("You have to select a filter first");
-        }
     }
 
 }
