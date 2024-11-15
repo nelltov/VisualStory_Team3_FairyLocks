@@ -1,56 +1,53 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PhoneVideo : Singleton<PhoneVideo>
 {
     public int x = 0;
     public VideoPlayer videoPlayer;
-    public VideoClip[] videoClips;
     public RawImage image;
 
     public AudioSource ring;
 
-    void Start()
+    private void Start()
     {
-        ring.Play();
+        image.gameObject.SetActive(false);
     }
+
     public void PlayManager(int order)
     {
         ring.Stop();
         image.gameObject.SetActive(true);
-        if (order >= 0 && order < videoClips.Length)
+        if (order >= 0 && order < 5)
         {
-            videoPlayer.clip = videoClips[order]; 
+            VideoClip videoClip = Resources.Load<VideoClip>($"ManagerCalls/manager_{order + 1}");
+            videoPlayer.clip = videoClip;
             videoPlayer.Play();
         }
-        x+=1;
         StartCoroutine(EndVideo((float)videoPlayer.clip.length));
     }
 
     public void Call()
     {
-
-        PlayManager(x);
-                
+        StartCoroutine(StartCall());
     }
 
-    IEnumerator EndVideo(float time)
+    private IEnumerator StartCall()
+    {
+        ring.Play();
+        yield return new WaitForSeconds(3);
+        PlayManager(x);
+    }
+
+    private IEnumerator EndVideo(float time)
     {
         yield return new WaitForSeconds(time);
         image.gameObject.SetActive(false);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        if (videoPlayer != null && !videoPlayer.isPlaying && videoPlayer.isPrepared)
-        {
-            image.gameObject.SetActive(false);
-        }
-        */
+        // alert the GameManager that the call has been played
+        GameManager.Instance.managerCallsPlayed[x] = true; 
+        x += 1;
     }
 }

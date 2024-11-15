@@ -1,26 +1,7 @@
 using UnityEngine;
 
-public class ScreenActivation : MonoBehaviour
+public class ScreenActivation : Singleton<ScreenActivation>
 {
-    public static ScreenActivation Instance { get; private set; }
-    public bool dontDestroyOnLoad;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            if (dontDestroyOnLoad)
-            {
-                DontDestroyOnLoad(gameObject);
-            }
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     void Start()
     {
         // Activate the main display (Display 1)
