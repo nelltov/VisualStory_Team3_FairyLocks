@@ -23,6 +23,9 @@ public class ScreenActivation : MonoBehaviour
 
     void Start()
     {
+        Screen.fullScreen = false;
+        Screen.SetResolution(1280, 720, false);
+
         // Activate the main display (Display 1)
         if (Display.displays.Length > 0)
         {
