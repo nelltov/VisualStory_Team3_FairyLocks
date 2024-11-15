@@ -685,7 +685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1133256103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,6 +700,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DontDestroy: 0
   managerCallsPlayed: 0000000000
+  introVideoPublished: 0
+  activismVidPublished: 0
 --- !u!4 &1133256104
 Transform:
   m_ObjectHideFlags: 0
@@ -1084,6 +1086,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 39.907013
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268550564366464601, guid: d755d00e7e3c4f94e8552b8094678f5a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3066237442732926249, guid: d755d00e7e3c4f94e8552b8094678f5a,
         type: 3}

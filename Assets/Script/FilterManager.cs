@@ -2,38 +2,50 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class FilterManager : MonoBehaviour
+public class FilterManager : Singleton<FilterManager>
 {
     public RawImage panel;
     public VideoPlayer videoplayer;
     public int x;
+    public int flagValue = 1;
+
+    public bool flag = false, feedback = true;
     [SerializeField] public Button publishButton;
     [SerializeField] public Button[] filterButtons;
-    [SerializeField] public ParticleSystem thumb;
+    [SerializeField] public ParticleSystem thumb, thumbdown;
 
     void Start()
     {
-        InitializeFilterUI();
+        panel.enabled = false;
+        videoplayer.clip = null;
         publishButton.interactable = false;
         thumb.Stop();
+        thumbdown.Stop();
+        // InitializeFilterUI();
     }
 
     public void Filter(int i)
     {
         videoplayer.Stop();
-        Debug.Log($"Yas1/video{i}");
 
-        VideoClip videoClip = Resources.Load<VideoClip>($"Yas1/video{i}");
+        VideoClip videoClip = Resources.Load<VideoClip>($"Yas{x}/video{i}");
         videoplayer.clip = videoClip;
         videoplayer.Play();
 
+        // Set flag to true if i == flagValue and false otherwise
+        flag = (i == flagValue);
+        
         publishButton.interactable = true;
     }
 
     public void InitializeFilterUI()
     {
+        publishButton.interactable = false;
+        thumb.Stop();
+        thumbdown.Stop();
+        panel.enabled = true;
         // load in video0 into panel
-        VideoClip videoClip = Resources.Load<VideoClip>($"Yas1/video0");
+        VideoClip videoClip = Resources.Load<VideoClip>($"Yas{x}/video0");
         videoplayer.clip = videoClip;
         videoplayer.Play();
 
@@ -48,7 +60,33 @@ public class FilterManager : MonoBehaviour
     public void Publish()
     {
         videoplayer.Stop();
-        thumb.Play();
+        panel.enabled = false;
+        if(flag)
+        {
+            if(feedback)
+            {
+                thumb.Play();
+            }
+            else
+            {
+                thumbdown.Play();
+            }
+
+            if (x == 1) 
+            {
+                GameManager.Instance.introVideoPublished = true;
+            }
+            else if (x == 4) 
+            {
+                GameManager.Instance.activismVidPublished = true;
+            }
+            
+        }
+        else {
+            Debug.Log("That's not the right filter!");
+        }
+
+        
     }
 
 }

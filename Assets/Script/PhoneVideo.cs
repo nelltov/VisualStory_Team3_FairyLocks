@@ -48,6 +48,5 @@ public class PhoneVideo : Singleton<PhoneVideo>
 
         // alert the GameManager that the call has been played
         GameManager.Instance.managerCallsPlayed[x] = true; 
-        x += 1;
     }
 }
