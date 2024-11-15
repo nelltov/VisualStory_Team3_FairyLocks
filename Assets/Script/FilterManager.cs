@@ -1,38 +1,53 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class FilterManager : MonoBehaviour
 {
-    public Image panel;
+    public RawImage panel;
+    public VideoPlayer videoplayer;
+    public int x;
     [SerializeField] public Button publishButton;
+    [SerializeField] public Button[] filterButtons;
     [SerializeField] public ParticleSystem thumb;
 
     void Start()
     {
+        InitializeFilterUI();
         publishButton.interactable = false;
         thumb.Stop();
     }
 
-    public void Filter1()
+    public void Filter(int i)
     {
-        panel.color = Color.red;
+        videoplayer.Stop();
+        Debug.Log($"Yas1/video{i}");
+
+        VideoClip videoClip = Resources.Load<VideoClip>($"Yas1/video{i}");
+        videoplayer.clip = videoClip;
+        videoplayer.Play();
+
         publishButton.interactable = true;
     }
 
-    public void Filter2()
+    public void InitializeFilterUI()
     {
-        panel.color = Color.yellow;
-        publishButton.interactable = true;
-    }
+        // load in video0 into panel
+        VideoClip videoClip = Resources.Load<VideoClip>($"Yas1/video0");
+        videoplayer.clip = videoClip;
+        videoplayer.Play();
 
-    public void Filter3()
-    {
-        panel.color = Color.green;
-        publishButton.interactable = true;
+        for (int i = 0; i < filterButtons.Length; i++) 
+        {
+            int index = i;
+            Button filterButton = filterButtons[i];
+            filterButton.onClick.AddListener(() => Filter(index + 1));
+        }
     }
 
     public void Publish()
     {
+        videoplayer.Stop();
         thumb.Play();
     }
 

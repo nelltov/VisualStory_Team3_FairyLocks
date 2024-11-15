@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19aa9c017fc26648824c8d0e77bb1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
+  DontDestroy: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,7 +685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1133256103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,6 +698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf407049994e1141bde191024a2590c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontDestroy: 0
+  managerCallsPlayed: 0000000000
 --- !u!4 &1133256104
 Transform:
   m_ObjectHideFlags: 0
@@ -1076,7 +1078,12 @@ PrefabInstance:
     - target: {fileID: 2052593702318884275, guid: d755d00e7e3c4f94e8552b8094678f5a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -145.99994
+      value: -146
+      objectReference: {fileID: 0}
+    - target: {fileID: 2052593702318884275, guid: d755d00e7e3c4f94e8552b8094678f5a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 39.907013
       objectReference: {fileID: 0}
     - target: {fileID: 3066237442732926249, guid: d755d00e7e3c4f94e8552b8094678f5a,
         type: 3}
@@ -1182,6 +1189,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246489475932798985, guid: d755d00e7e3c4f94e8552b8094678f5a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

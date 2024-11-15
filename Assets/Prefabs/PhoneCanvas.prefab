@@ -118,14 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596a79548ba852c42b1bb8f4925b530d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontDestroy: 0
   x: 0
   videoPlayer: {fileID: 2573518839794131606}
-  videoClips:
-  - {fileID: 32900000, guid: a359df912ca64a3408147ccd8d830a44, type: 3}
-  - {fileID: 32900000, guid: be97a0cb229870b4ab130534b992e627, type: 3}
-  - {fileID: 32900000, guid: 1cadaeb8fc93a154f817b919a65af9a7, type: 3}
-  - {fileID: 32900000, guid: ef6701ae5a317ea49b649c571102b28e, type: 3}
-  - {fileID: 32900000, guid: 34ba8202db15692418bb4f5ef24c9a81, type: 3}
   image: {fileID: 9186126515109742374}
   ring: {fileID: 5800473049525134379}
 --- !u!82 &5800473049525134379
@@ -139,7 +134,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3550362b6695e6d4da733fc5c4ea7060, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
