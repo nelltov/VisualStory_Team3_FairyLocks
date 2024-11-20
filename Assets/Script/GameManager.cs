@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -46,6 +47,7 @@ public class GameManager : Singleton<GameManager>
         // Play call #2 and wait for the call to be done
         PhoneVideo.Instance.x = 1;
         PhoneVideo.Instance.Call();
+        News.Instance.newspop();
         while (!managerCallsPlayed[1]) yield return null;
 
         // TODO: Set up the UI for editing sequence #2
