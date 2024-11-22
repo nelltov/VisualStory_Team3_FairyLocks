@@ -8,12 +8,14 @@ public class PhoneVideo : Singleton<PhoneVideo>
     public int x = 0;
     public VideoPlayer videoPlayer;
     public RawImage image;
+    public GameObject notCalling;
 
     public AudioSource ring;
 
     private void Start()
     {
         image.gameObject.SetActive(false);
+        notCalling.SetActive(true);
     }
 
     public void PlayManager(int order)
@@ -37,6 +39,7 @@ public class PhoneVideo : Singleton<PhoneVideo>
     private IEnumerator StartCall()
     {
         ring.Play();
+        notCalling.SetActive(false);
         yield return new WaitForSeconds(3);
         PlayManager(x);
     }
@@ -45,6 +48,7 @@ public class PhoneVideo : Singleton<PhoneVideo>
     {
         yield return new WaitForSeconds(time);
         image.gameObject.SetActive(false);
+        notCalling.SetActive(true);
 
         // alert the GameManager that the call has been played
         GameManager.Instance.managerCallsPlayed[x] = true; 

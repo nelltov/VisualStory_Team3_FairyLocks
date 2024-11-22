@@ -4,13 +4,22 @@ using UnityEngine.UIElements;
 
 public class GameManager : Singleton<GameManager>
 {
+    public GameObject cheatSheetCanvas;
+    public GameObject editorCanvas;
+    public GameObject newsCanvas;
+
     public bool[] managerCallsPlayed = new bool[5];
     public bool introVideoPublished = false;
     public bool activismVidPublished = false;
 
     void Start()
     {
+        // TODO: show the UI for cheat sheet and the phoen screen 
         StartCoroutine(GameplayFlow());
+
+        cheatSheetCanvas.SetActive(true);
+        // editorCanvas.SetActive(false); // Don't know why but doing this will break the video so going to just ignore it now
+        newsCanvas.SetActive(false);
     }
 
     void Update()
@@ -19,6 +28,11 @@ public class GameManager : Singleton<GameManager>
         {
             Application.Quit();
         }
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(GameplayFlow());
     }
 
     private IEnumerator GameplayFlow()
@@ -33,6 +47,9 @@ public class GameManager : Singleton<GameManager>
         PhoneVideo.Instance.Call();
         while (!managerCallsPlayed[0]) yield return null;
 
+        cheatSheetCanvas.SetActive(false);
+        editorCanvas.SetActive(true);
+
         // Set up the UI for editing sequence #1 
         // Wait until player clicks "publish" on editing video #1
         FilterManager.Instance.x = 1;
@@ -40,14 +57,17 @@ public class GameManager : Singleton<GameManager>
         FilterManager.Instance.feedback = true;
         FilterManager.Instance.InitializeFilterUI();
         while (!introVideoPublished) yield return null;
-        
+
+        editorCanvas.SetActive(false);
+        newsCanvas.SetActive(true);
+
         // TODO: Show feedback #1 for a couple seconds
 
 
         // Play call #2 and wait for the call to be done
         PhoneVideo.Instance.x = 1;
         PhoneVideo.Instance.Call();
-        News.Instance.newspop();
+        // News.Instance.newspop();
         while (!managerCallsPlayed[1]) yield return null;
 
         Debug.Log("Finished the game!");

@@ -1,18 +1,26 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PopUp : MonoBehaviour
+public class News : Singleton<News>
 {
+    public Image news;
+    public AudioSource NewsSound;
+    private Animator animator;
     // Start is called before the first frame update
-    void Start()
+    public void newspop()
     {
-        
+        StartCoroutine(popnews());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator popnews()
     {
-        
+        animator = news.GetComponent<Animator>();
+        yield return new WaitForSeconds(6);
+        FilterManager.Instance.thumb.Stop();
+        FilterManager.Instance.thumbdown.Stop();
+        NewsSound.Play();
+        news.gameObject.SetActive(true);
+        animator.SetTrigger("1");
     }
 }

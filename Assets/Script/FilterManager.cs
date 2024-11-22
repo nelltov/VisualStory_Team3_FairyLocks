@@ -19,8 +19,8 @@ public class FilterManager : Singleton<FilterManager>
         panel.enabled = false;
         videoplayer.clip = null;
         publishButton.interactable = false;
-        thumb.Stop();
-        thumbdown.Stop();
+        //thumb.Stop();
+        //thumbdown.Stop();
         // InitializeFilterUI();
     }
 
@@ -41,8 +41,8 @@ public class FilterManager : Singleton<FilterManager>
     public void InitializeFilterUI()
     {
         publishButton.interactable = false;
-        thumb.Stop();
-        thumbdown.Stop();
+        //thumb.Stop();
+        //thumbdown.Stop();
         panel.enabled = true;
         // load in video0 into panel
         VideoClip videoClip = Resources.Load<VideoClip>($"Yas{x}/video0");
@@ -53,24 +53,25 @@ public class FilterManager : Singleton<FilterManager>
         {
             int index = i;
             Button filterButton = filterButtons[i];
-            filterButton.onClick.AddListener(() => Filter(index + 1));
+            filterButton.onClick.AddListener(() => Filter(index));
         }
     }
 
     public void Publish()
     {
-        videoplayer.Stop();
-        panel.enabled = false;
         if(flag)
         {
-            if(feedback)
-            {
-                thumb.Play();
-            }
-            else
-            {
-                thumbdown.Play();
-            }
+            videoplayer.Stop();
+            panel.enabled = false;
+
+            //if (feedback)
+            //{
+            //    thumb.Play();
+            //}
+            //else
+            //{
+            //    thumbdown.Play();
+            //}
 
             if (x == 1) 
             {
