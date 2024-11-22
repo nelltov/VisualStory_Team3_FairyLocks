@@ -14,11 +14,16 @@ public class FilterManager : Singleton<FilterManager>
     [SerializeField] public Button[] filterButtons;
     [SerializeField] public ParticleSystem thumb, thumbdown;
 
+    public GameObject managerTexts;
+    private Animator managerTextAnimator;
+    public AudioSource audioSource;
+
     void Start()
     {
         panel.enabled = false;
         videoplayer.clip = null;
         publishButton.interactable = false;
+        managerTextAnimator = managerTexts.GetComponent<Animator>();
         //thumb.Stop();
         //thumbdown.Stop();
         // InitializeFilterUI();
@@ -85,6 +90,8 @@ public class FilterManager : Singleton<FilterManager>
         }
         else {
             Debug.Log("That's not the right filter!");
+            audioSource.Play();
+            managerTextAnimator.SetTrigger("text");
         }
 
         

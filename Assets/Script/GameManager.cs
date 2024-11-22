@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         // TODO: show the UI for cheat sheet and the phoen screen 
-        StartCoroutine(GameplayFlow());
+        // StartCoroutine(GameplayFlow());
 
         cheatSheetCanvas.SetActive(true);
         // editorCanvas.SetActive(false); // Don't know why but doing this will break the video so going to just ignore it now
